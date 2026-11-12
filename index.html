@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A fictional educational game for diagnosing and improving a space mission design.">
   <title>SPACE MISSION DESIGN LAB</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,45 +12,101 @@
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark">✦</div>
-        <div><p class="eyebrow">SPACE MISSION DESIGN LAB</p><h1>MISSION <span>BUILDER</span></h1></div>
+        <div>
+          <p class="eyebrow">SPACE MISSION DESIGN LAB</p>
+          <h1>MISSION <span>ANALYST</span></h1>
+        </div>
       </div>
       <div class="top-meta">
-        <span class="status-dot"></span><span>DESIGN MODE</span>
-        <span class="version">EDUCATIONAL SIM / 01</span>
+        <span class="status-dot"></span>
+        <span data-i18n="designMode">DESIGN ANALYSIS MODE</span>
+        <span class="version">EDUCATIONAL SIM / 02</span>
+        <label class="language-control">
+          <span class="sr-only" data-i18n="languageLabel">Language</span>
+          <select id="languageSelect" aria-label="Language">
+            <option value="ja">日本語</option>
+            <option value="en">English</option>
+          </select>
+        </label>
       </div>
     </header>
 
     <main>
       <section class="intro-row">
-        <div>
-          <p class="eyebrow">DESIGN → CHALLENGE → ANALYZE → IMPROVE</p>
-          <h2>自分だけのロケットを設計しよう。</h2>
-          <p class="subcopy">部品の組み合わせで性能と費用が変化します。限られた予算で、目標ミッションの達成を目指そう。</p>
+        <div class="intro-copy">
+          <p class="eyebrow" data-i18n="introEyebrow">INVESTIGATE → DIAGNOSE → IMPROVE → COMPARE</p>
+          <h2 data-i18n="heroTitle">設計データから、ロケットの問題を読み解こう。</h2>
+          <p class="subcopy" data-i18n="heroDescription">提示された設計を分析し、問題の原因を考え、部品を変更して改善を目指そう。</p>
         </div>
         <div class="budget-card">
-          <span class="eyebrow">AVAILABLE BUDGET</span>
-          <strong><span id="budgetLeft">100</span><small> / 100 PT</small></strong>
+          <span class="eyebrow" data-i18n="availableBudget">AVAILABLE BUDGET</span>
+          <strong><span id="budgetLeft">46</span><small> / 100 PT</small></strong>
           <div class="budget-track"><div id="budgetBar"></div></div>
-          <span id="budgetMessage" class="budget-message">予算内で設計できます</span>
+          <span id="budgetMessage" class="budget-message">予算内で改善できます</span>
         </div>
       </section>
 
-      <section class="workspace">
+      <section class="case-panel panel" id="caseHeaderPanel">
+        <div class="case-heading">
+          <div>
+            <p class="eyebrow" id="caseEyebrow">CASE FILE / RANDOM</p>
+            <h3 id="caseHeaderTitle">宇宙ミッションの設計調査</h3>
+          </div>
+          <span class="case-status" id="caseHeaderStatus">調査開始前</span>
+        </div>
+        <p class="case-description" id="caseHeaderDescription">毎回異なるミッション条件と証拠を調べ、問題の原因を推理してください。</p>
+        <div class="case-objective">
+          <span class="objective-label">INVESTIGATION OBJECTIVE</span>
+          <strong id="caseHeaderObjective">証拠を集め、設計上の問題を特定する</strong>
+        </div>
+      </section>
+
+      <section class="panel investigation-panel" id="investigationPanel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">00 / ENGINEERING INVESTIGATION</p>
+            <h3 id="investigationTitle">CASE：調査ファイル</h3>
+          </div>
+          <span class="case-status" id="investigationStatus">調査中</span>
+        </div>
+        <p class="investigation-lead" id="investigationLead"></p>
+        <div class="case-brief-grid" id="caseBriefGrid"></div>
+        <div class="evidence-grid" id="evidenceGrid"></div>
+        <div class="hypothesis-box">
+          <div>
+            <p class="eyebrow">YOUR HYPOTHESIS</p>
+            <h4 id="hypothesisTitle">集めた証拠から、最も可能性の高い原因を選ぼう。</h4>
+            <p class="hypothesis-help" id="hypothesisHelp">証拠を1つ以上確認すれば仮説を提出できます。全部読まなくてもOK！</p>
+          </div>
+          <div class="hypothesis-options" id="hypothesisOptions" role="group" aria-label="原因の仮説"></div>
+          <p id="hypothesisFeedback" class="hypothesis-feedback" aria-live="polite">まずは証拠カードを確認してください。</p>
+          <button type="button" id="submitHypothesis" class="primary-button" disabled>仮説を提出する</button>
+        </div>
+      </section>
+
+      <section class="workspace" id="workspace" hidden>
         <aside class="panel parts-panel">
-          <div class="panel-heading"><div><p class="eyebrow">01 / COMPONENTS</p><h3>部品を選択</h3></div><span class="step-number">A</span></div>
+          <div class="panel-heading">
+            <div><p class="eyebrow">02 / ENGINEERING WORKSHOP</p><h3 data-i18n="partsTitle">設計部品を変更</h3></div>
+            <span class="step-number">A</span>
+          </div>
+          <p class="panel-intro" data-i18n="partsIntro">部品を選び直して、現在の設計を改善できます。</p>
           <div id="partGroups"></div>
-          <div class="hint-box"><span class="hint-icon">ⓘ</span><p>部品を選ぶと、中央の設計図と右側の性能表示が更新されます。</p></div>
+          <div class="hint-box">
+            <span class="hint-icon">ⓘ</span>
+            <p data-i18n="partsHint">部品を変更すると、中央の設計図と右側の性能データが更新されます。</p>
+          </div>
         </aside>
 
         <section class="panel blueprint-panel">
           <div class="panel-heading">
-            <div><p class="eyebrow">02 / BLUEPRINT VIEW</p><h3>機体設計図</h3></div>
+            <div><p class="eyebrow">03 / BLUEPRINT VIEW</p><h3 data-i18n="blueprintTitle">診断対象の設計図</h3></div>
             <span class="live-tag"><i></i> LIVE PREVIEW</span>
           </div>
           <div class="blueprint" id="blueprint">
             <div class="blueprint-grid"></div>
             <div class="axis axis-x">X — 01</div><div class="axis axis-y">Y — 02</div>
-            <svg id="rocketDrawing" viewBox="0 0 420 560" role="img" aria-label="選択した部品を反映したロケットの設計図">
+            <svg id="rocketDrawing" viewBox="0 0 420 560" role="img" aria-label="Selected fictional rocket design">
               <defs>
                 <linearGradient id="bodyGradient" x1="0" x2="1"><stop offset="0" stop-color="#9bb8d2"/><stop offset=".5" stop-color="#f1f6fb"/><stop offset="1" stop-color="#7c9bb9"/></linearGradient>
                 <linearGradient id="flameGradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffe59a"/><stop offset="1" stop-color="#ff874c" stop-opacity="0"/></linearGradient>
@@ -59,57 +116,109 @@
                 <path d="M95 95 H325 M95 89 V101 M325 89 V101"/>
                 <path d="M345 130 V420 M339 130 H351 M339 420 H351"/>
               </g>
-              <g fill="#78a8c9" font-size="10" font-family="monospace"><text x="210" y="83" text-anchor="middle">CONFIGURATION VIEW</text><text x="358" y="278" transform="rotate(90 358 278)">SCHEMATIC ONLY</text></g>
+              <g fill="#78a8c9" font-size="10" font-family="monospace">
+                <text x="210" y="83" text-anchor="middle">CONFIGURATION VIEW</text>
+                <text x="358" y="278" transform="rotate(90 358 278)">SCHEMATIC ONLY</text>
+              </g>
             </svg>
             <div class="blueprint-label label-top">NO. 001 / VEHICLE</div>
-            <div class="blueprint-label label-bottom">NOT TO SCALE · GAME MODEL</div>
+            <div class="blueprint-label label-bottom" data-i18n="blueprintNote">NOT TO SCALE · GAME MODEL</div>
           </div>
-          <div class="blueprint-footer"><span>構成変更はリアルタイム反映</span><span id="configName">STANDARD CONFIGURATION</span></div>
+          <div class="blueprint-footer">
+            <span data-i18n="blueprintFooter">部品の変更をリアルタイムで反映</span>
+            <span id="configName">STANDARD ENGINE / LIGHT FRAME</span>
+          </div>
         </section>
 
         <aside class="panel telemetry-panel">
-          <div class="panel-heading"><div><p class="eyebrow">03 / TELEMETRY</p><h3>設計パラメータ</h3></div><span class="step-number">B</span></div>
-          <div class="metric-list">
-            <div class="metric"><div class="metric-top"><span>推進性能</span><b id="thrustValue">—</b></div><div class="metric-track"><i id="thrustBar"></i></div><small>上昇を支えるゲーム内指標</small></div>
-            <div class="metric"><div class="metric-top"><span>構造バランス</span><b id="structureValue">—</b></div><div class="metric-track"><i id="structureBar"></i></div><small>軽さと安定性のバランス</small></div>
-            <div class="metric"><div class="metric-top"><span>燃料余裕</span><b id="fuelValue">—</b></div><div class="metric-track"><i id="fuelBar"></i></div><small>ミッションを続ける余裕</small></div>
-            <div class="metric"><div class="metric-top"><span>速度変更能力</span><b id="deltaValue">—</b></div><div class="metric-track"><i id="deltaBar"></i></div><small>目標軌道へ移るための抽象指標</small></div>
+          <div class="panel-heading">
+            <div><p class="eyebrow">04 / TELEMETRY</p><h3 data-i18n="metricsTitle">設計パラメータ</h3></div>
+            <span class="step-number">B</span>
           </div>
-          <div class="cost-summary"><span>選択部品の合計費用</span><strong><b id="costValue">0</b> <small>PT</small></strong></div>
-          <button id="launchButton" class="primary-button">▶　ミッションに挑戦</button>
-          <p class="button-note">※予算超過時は挑戦できません</p>
+          <p class="panel-intro" data-i18n="metricsIntro">このゲーム独自の評価値です。実際の工学単位ではありません。</p>
+          <div class="metric-list">
+            <div class="metric">
+              <div class="metric-top"><span data-i18n="thrust">推進性能</span><b id="thrustValue">—</b></div>
+              <div class="metric-track"><i id="thrustBar"></i></div>
+              <small data-i18n="thrustHint">上昇を支えるゲーム内指標</small>
+            </div>
+            <div class="metric">
+              <div class="metric-top"><span data-i18n="structure">構造バランス</span><b id="structureValue">—</b></div>
+              <div class="metric-track"><i id="structureBar"></i></div>
+              <small data-i18n="structureHint">軽さと安定性を表すゲーム内指標</small>
+            </div>
+            <div class="metric">
+              <div class="metric-top"><span data-i18n="fuel">燃料余裕</span><b id="fuelValue">—</b></div>
+              <div class="metric-track"><i id="fuelBar"></i></div>
+              <small data-i18n="fuelHint">ミッションを続ける余裕を表す指標</small>
+            </div>
+            <div class="metric">
+              <div class="metric-top"><span data-i18n="delta">速度変更能力</span><b id="deltaValue">—</b></div>
+              <div class="metric-track"><i id="deltaBar"></i></div>
+              <small data-i18n="deltaHint">目標条件への対応力を表す抽象指標</small>
+            </div>
+          </div>
+          <div class="cost-summary">
+            <span data-i18n="totalCost">選択部品の合計費用</span>
+            <strong><b id="costValue">0</b> <small>PT</small></strong>
+          </div>
+          <button id="launchButton" class="primary-button" data-i18n="diagnoseButton">⌕　設計を診断する</button>
+          <p class="button-note" data-i18n="buttonNote">診断後、部品を変更して再評価できます。</p>
         </aside>
       </section>
 
       <section class="panel mission-panel">
-        <div class="panel-heading"><div><p class="eyebrow">MISSION OBJECTIVE</p><h3>今回のミッション</h3></div><span class="mission-badge">NORMAL</span></div>
+        <div class="panel-heading">
+          <div><p class="eyebrow">MISSION BRIEF</p><h3 data-i18n="missionTitle">今回の調査目標</h3></div>
+          <span class="mission-badge">CASE 001</span>
+        </div>
         <div class="mission-content">
-          <div class="target-icon">◎</div>
-          <div class="mission-text"><strong>地球周回軌道への到達を目指す</strong><p>推進性能・機体のバランス・燃料余裕・速度変更能力を総合的に整えよう。実際の軌道計算ではなく、学習用の簡略モデルで判定します。</p></div>
-          <div class="mission-goal"><span class="eyebrow">GOAL</span><b>ORBIT<br>INSERTION</b></div>
+          <div class="target-icon">⌖</div>
+          <div class="mission-text">
+            <strong data-i18n="missionGoalTitle">設計上の弱点を特定しよう</strong>
+            <p data-i18n="missionDescription">4つの評価項目を確認し、基準を下回る項目があれば、どの部品構成が関係しているか調べましょう。評価は学習用の簡略モデルです。</p>
+          </div>
+          <div class="mission-goal"><span class="eyebrow">GOAL</span><b data-i18n="missionGoal">DIAGNOSE<br> & IMPROVE</b></div>
         </div>
       </section>
 
       <section class="panel result-panel" id="resultPanel" hidden>
-        <div class="panel-heading"><div><p class="eyebrow">04 / FLIGHT REVIEW</p><h3 id="resultTitle">ミッション分析</h3></div><span id="resultBadge" class="result-badge">RESULT</span></div>
+        <div class="panel-heading">
+          <div><p class="eyebrow">04 / DIAGNOSTIC REPORT</p><h3 id="resultTitle" data-i18n="reportTitle">設計診断レポート</h3></div>
+          <span id="resultBadge" class="result-badge">REPORT</span>
+        </div>
+        <div class="report-summary" id="reportSummary"></div>
+        <div class="comparison-wrap">
+          <h4 data-i18n="comparisonTitle">初期設計と現在の設計を比較</h4>
+          <div id="comparisonGrid" class="comparison-grid"></div>
+        </div>
         <div class="flight-layout">
           <div class="flight-window">
             <div class="flight-stars"></div>
-            <div class="flight-status" id="flightStatus">READY FOR LAUNCH</div>
+            <div class="flight-status" id="flightStatus">DIAGNOSTIC COMPLETE</div>
             <div class="flight-rocket" id="flightRocket">▲</div>
             <div class="flight-ground"></div>
-            <div class="flight-caption" id="flightCaption">設計データを確認しています…</div>
+            <div class="flight-caption" id="flightCaption">設計データの確認が完了しました。</div>
           </div>
           <div class="analysis-copy">
-            <h4 id="analysisHeading">設計を分析しよう</h4>
+            <h4 id="analysisHeading">診断結果</h4>
             <p id="analysisText"></p>
             <ul id="analysisList"></ul>
-            <button id="retryButton" class="secondary-button">設計に戻って改善する ↗</button>
+            <button id="retryButton" class="secondary-button" data-i18n="retryButton">設計を変更して再診断する ↗</button>
           </div>
+        </div>
+        <div class="case-clear-panel" id="caseClearPanel" hidden>
+          <p class="eyebrow">MISSION SUCCESS / CASE SOLVED</p>
+          <h3 id="caseClearTitle">CASE 解決！</h3>
+          <p id="caseClearExplanation"></p>
+          <button type="button" id="nextCaseButton" class="primary-button">次の事件を調査する →</button>
         </div>
       </section>
     </main>
-    <footer><span>SPACE MISSION DESIGN LAB</span><span>教育用ゲームモデル / 実在のロケット設計・飛行を再現するものではありません</span></footer>
+    <footer>
+      <span>SPACE MISSION DESIGN LAB</span>
+      <span data-i18n="footerNote">教育用ゲームモデル / 実在のロケット設計・飛行を再現するものではありません</span>
+    </footer>
   </div>
   <script src="script.js"></script>
 </body>
