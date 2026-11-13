@@ -6,6 +6,8 @@
 // ------------------------------
 const translations = {
   ja: {
+    scienceTag: "実際の科学とのつながり",
+    scienceSources: "参考資料（NASA）",
     designMode: "DESIGN ANALYSIS MODE",
     languageLabel: "言語",
     introEyebrow: "INVESTIGATE → DIAGNOSE → IMPROVE → COMPARE",
@@ -98,6 +100,8 @@ const translations = {
     }
   },
   en: {
+    scienceTag: "Connection to real science",
+    scienceSources: "NASA references",
     designMode: "DESIGN ANALYSIS MODE",
     languageLabel: "Language",
     introEyebrow: "INVESTIGATE → DIAGNOSE → IMPROVE → COMPARE",
@@ -271,6 +275,10 @@ const caseBank = [
       {title:{ja:"予算の記録",en:"Budget record"},body:{ja:"設計変更に使える予算は100 PT。",en:"The available redesign budget is 100 PT."},detail:{ja:"初期設計は54 PT。追加部品や交換に使える余裕は46 PT。",en:"The initial design costs 54 PT, leaving 46 PT for changes."}}
     ],
     options:[{id:"booster",label:{ja:"ブースターが搭載されていない",en:"No booster is installed"}},{id:"tank",label:{ja:"燃料タンクが小さすぎる",en:"The fuel tank is too small"}},{id:"frame",label:{ja:"機体フレームが軽すぎる",en:"The frame is too light"}}],
+    optionFeedback:{
+      tank:{ja:"タンク容量は燃料余裕には関係しますが、今回の証拠E-02では速度変更能力への加算が+5 PTです。ブースターの+0 PTと比較し、どの変更が不足分に関係するか考え直そう。",en:"Tank capacity affects fuel margin, but E-02 shows it contributes +5 to velocity change. Compare that with the absent booster's +0 and reconsider which change addresses the shortfall."},
+      frame:{ja:"軽量フレームは構造バランスに関係する部品です。今回の不足は速度変更能力なので、E-02の速度変更能力への加算値を見て判断しよう。",en:"The lightweight frame mainly affects structural balance. This case concerns velocity-change capability, so use the contributions to that rating in E-02."}
+    },
     explanation:{ja:"部品表ではブースターの加算が0 PTで、要求との差を埋める設計変更候補になっている。ただし、ブースターを追加するだけでなく、予算と他の性能も見ながら組み合わせを調整する必要がある。",en:"The manifest shows a zero contribution from the absent booster, making it a relevant design change. Adding it alone is not automatically enough: the final combination must still respect the budget and other ratings."},
     hint:{ja:"E-02で、速度変更能力への加算が0 PTになっている項目を探そう。",en:"In E-02, look for the item contributing 0 PT to the velocity-change rating."}
   },
@@ -288,6 +296,10 @@ const caseBank = [
       {title:{ja:"設計変更の条件",en:"Redesign constraints"},body:{ja:"予算上限は100 PT。性能だけを見て高価な構成にはできない。",en:"The budget cap is 100 PT. A high-cost configuration is not automatically acceptable."},detail:{ja:"初期設計費用は54 PT。推進系を変更しても、構造・燃料・速度変更能力の基準は維持する必要がある。",en:"The initial design costs 54 PT. Changes must also preserve the structure, fuel and velocity-change targets."}}
     ],
     options:[{id:"booster",label:{ja:"補助推進部品がない",en:"No auxiliary booster is installed"}},{id:"tank",label:{ja:"燃料タンクが小さい",en:"The fuel tank is too small"}},{id:"frame",label:{ja:"フレームが軽量型である",en:"The frame is lightweight"}}],
+    optionFeedback:{
+      tank:{ja:"タンクは燃料余裕に関係しますが、今回の不足は推進性能です。E-02の推進性能への加算値を比較しよう。",en:"The tank affects fuel margin, but the shortfall is in propulsion. Compare the propulsion contributions in E-02."},
+      frame:{ja:"フレームは構造バランスに関係する部品です。推進性能の不足を説明できる証拠があるか、推進系の記録に戻って確認しよう。",en:"The frame affects structural balance. Return to the propulsion records and check whether the evidence supports it as the cause of a propulsion shortfall."}
+    },
     explanation:{ja:"推進性能の不足に対して、推進系の構成が直接関係する。改善時はブースターだけでなく、予算や他の評価項目も確認しよう。",en:"The propulsion configuration is directly relevant to the shortfall. During redesign, check the budget and the other ratings as well as the booster option."},
     hint:{ja:"E-02で推進性能に関係する部品を確認しよう。",en:"Check which components in E-02 affect propulsion."}
   },
@@ -305,6 +317,10 @@ const caseBank = [
       {title:{ja:"タンクと予算",en:"Tank and budget"},body:{ja:"コンパクトタンクを搭載。予算上限は100 PT。",en:"A compact tank is selected. The budget cap is 100 PT."},detail:{ja:"タンクの変更も選択肢だが、エンジンの評価表にも燃料余裕の差が示されている。",en:"Changing the tank is also possible, but the engine rating sheet shows a difference in fuel-margin contribution."}}
     ],
     options:[{id:"engine",label:{ja:"燃料余裕への加算が小さいエンジン",en:"The selected engine contributes little to fuel margin"}},{id:"tank",label:{ja:"タンク容量だけが原因",en:"Tank capacity is the only cause"}},{id:"frame",label:{ja:"フレームの形状が原因",en:"The frame shape is the cause"}}],
+    optionFeedback:{
+      tank:{ja:"タンクの変更も燃料余裕を改善する可能性があります。ただしE-02では、現在のエンジンが+0 PT、効率重視エンジンが+12 PTと明確な差があります。「タンクだけ」が原因とは言い切れません。",en:"Changing the tank could also improve fuel margin. However, E-02 shows a clear engine difference: +0 versus +12. The evidence does not support the tank as the only cause."},
+      frame:{ja:"フレームの記録は主に構造バランスを示しています。燃料余裕の不足を説明するには、燃料余裕への加算値を比較する必要があります。",en:"The frame record mainly concerns structural balance. To explain the fuel-margin shortfall, compare the contributions to fuel margin."}
+    },
     explanation:{ja:"このゲームの評価ルールでは、現在の強化エンジンは燃料余裕への加算が0 PT。効率重視エンジンなどへの変更を比較すると、他の評価とのバランスを考えられる。",en:"Under this game's rules, the selected advanced engine contributes 0 PT to fuel margin. Comparing the efficient engine can improve the balance against the other ratings."},
     hint:{ja:"E-02のエンジン評価表で、燃料余裕への加算値を比べよう。",en:"Compare the fuel-margin contributions in the engine rating sheet."}
   },
@@ -322,6 +338,10 @@ const caseBank = [
       {title:{ja:"追加部品の記録",en:"Added-component record"},body:{ja:"大容量タンクと強化ブースターも搭載されている。",en:"A large tank and advanced booster are also selected."},detail:{ja:"追加部品を維持するなら、フレームの選択を見直す余地がある。費用は合計93 PT。",en:"If the added components are retained, the frame selection may need review. Total cost is 93 PT."}}
     ],
     options:[{id:"frame",label:{ja:"軽量フレームでは構造評価が足りない",en:"The lightweight frame does not meet the structural target"}},{id:"engine",label:{ja:"エンジンが標準型だから",en:"The engine is the standard type"}},{id:"tank",label:{ja:"タンクが大容量だから",en:"The tank is large"}}],
+    optionFeedback:{
+      engine:{ja:"エンジンは推進性能に関係する部品です。今回の証拠E-02で構造評価の数値を比較すると、フレームの違いが直接示されています。",en:"The engine affects propulsion. In E-02, the structural ratings directly show a difference between the frame options."},
+      tank:{ja:"大容量タンクは搭載されていますが、E-02ではフレーム自体の構造評価が示されています。タンクの大きさだけでは、構造評価の不足を説明できません。",en:"The large tank is present, but E-02 gives the frame's structural ratings. Tank size alone does not explain the structural shortfall."}
+    },
     explanation:{ja:"軽量フレームの構造評価は43 PTで、補強フレームの88 PTより低い。フレームを変更すると費用や他の評価も変わるため、全体を再診断しよう。",en:"The lightweight frame contributes 43 PT to structural balance, compared with 88 PT for the reinforced frame. Changing it affects cost and the overall design, so run the full diagnosis again."},
     hint:{ja:"E-02でフレームの構造評価を比較しよう。",en:"Compare the frame's structural contributions in E-02."}
   },
@@ -339,6 +359,10 @@ const caseBank = [
       {title:{ja:"評価条件",en:"Rating constraints"},body:{ja:"予算だけでなく、4つの性能評価も基準を満たす必要がある。",en:"The design must meet all four rating targets as well as the budget condition."},detail:{ja:"一つの部品を最高性能にするより、複数部品の組み合わせを見直すことが重要。",en:"A balanced combination may be better than choosing the highest-rated option in every category."}}
     ],
     options:[{id:"combination",label:{ja:"複数部品の組み合わせが高コスト",en:"The combination of components is too costly"}},{id:"engine",label:{ja:"エンジンだけが予算超過の原因",en:"The engine alone causes the overrun"}},{id:"tank",label:{ja:"タンクだけが予算超過の原因",en:"The tank alone causes the overrun"}}],
+    optionFeedback:{
+      engine:{ja:"エンジンの価格は高めですが、E-02の部品表では他にも高価格の部品が選ばれています。エンジン単体ではなく合計費用を確認しよう。",en:"The engine is expensive, but E-02 lists other high-cost components too. Check the total rather than blaming the engine alone."},
+      tank:{ja:"タンクも費用に影響しますが、他の部品も高価格です。E-02とE-03を照らし合わせ、どの組み合わせで予算を超えたか考えよう。",en:"The tank contributes to the cost, but other components are expensive too. Compare E-02 and E-03 to see how the combination exceeds the budget."}
+    },
     explanation:{ja:"費用超過は一つの部品だけでなく、高価格部品を重ねた構成全体から生じている。性能を確認しながら、複数の部品を組み合わせ直す必要がある。",en:"The overrun comes from the overall combination of expensive components, not just one item. Rebalance multiple components while checking all ratings."},
     hint:{ja:"E-02とE-03を合わせて見よう。最高性能の部品を並べることが最適とは限らない。",en:"Read E-02 and E-03 together. Selecting the highest-rated parts is not always the best solution."}
   },
@@ -356,10 +380,189 @@ const caseBank = [
       {title:{ja:"変更可能な範囲",en:"Available changes"},body:{ja:"予算は100 PT。部品の交換・追加で設計を調整できる。",en:"The budget is 100 PT. The design can be adjusted by replacing or adding components."},detail:{ja:"設計の良し悪しは、部品単体ではなくミッション目標との適合で判断する。",en:"A design should be judged by how well it fits the mission, not by a component in isolation."}}
     ],
     options:[{id:"mission",label:{ja:"ミッション目標が変更され、旧設計が合わなくなった",en:"The mission target changed, making the old design unsuitable"}},{id:"engine",label:{ja:"エンジンが故障した",en:"The engine has failed"}},{id:"tank",label:{ja:"燃料タンクに破損がある",en:"The fuel tank is damaged"}}],
+    optionFeedback:{
+      engine:{ja:"エンジン故障を示す記録はありません。E-02には部品の故障ではなく、旧ミッション条件をもとに設計されたと記録されています。",en:"There is no record of engine failure. E-02 says the design was based on the previous mission requirements, not that a component failed."},
+      tank:{ja:"タンク破損を示す記録はありません。E-02とE-01を比べ、部品の故障ではなく要求条件が変わったことに注目しよう。",en:"There is no record of tank damage. Compare E-01 and E-02 and focus on the changed requirement rather than component failure."}
+    },
     explanation:{ja:"この事件の本質は部品の故障ではなく、ミッション目標の変更に設計が追いついていないこと。最初に要求条件を確認する重要性を学べる。",en:"The core issue is not a component failure: the design has not been updated to match the revised mission target. This highlights why requirements must be checked first."},
     hint:{ja:"証拠E-01とE-02を比べて、故障の記録があるか確認しよう。",en:"Compare E-01 and E-02. Is there evidence of a component failure?"}
   }
 ];
+
+
+// ------------------------------
+// NASAの公開教材に基づく学習メモ
+// 科学原理の説明と、ゲーム内の架空ポイントを明確に分離する。
+const scienceLessons = {
+  orbit: {
+    title: {
+      ja: "Δv（デルタV）とロケット方程式",
+      en: "Delta-v and the rocket equation"
+    },
+    principle: {
+      ja: "Δvは、宇宙機がどれだけ速度を変えられるかを表す量です。",
+      en: "Delta-v describes how much a spacecraft can change its velocity."
+    },
+    formula: "Δv = Isp × g₀ × ln(m₀ / m_f)",
+    explanation: {
+      ja: "理想ロケット方程式では、Δvはエンジンの比推力と、燃焼前後の質量比に関係します。燃料を増やすだけでなく、機体構造や搭載物の質量も含めて考える必要があります。",
+      en: "The ideal rocket equation relates delta-v to engine specific impulse and the mass ratio before and after a burn. Propellant is not the only factor: the mass of the structure and payload also matters."
+    },
+    boundary: {
+      ja: "このゲームの「速度変更能力 PT」はΔvの実測値・計算値ではありません。実際のΔvを算出するロケット方程式を、そのままゲームのポイント計算には使っていません。",
+      en: "The game's 'Velocity Change PT' is not a measured or calculated delta-v. The game does not use the rocket equation to calculate this score."
+    },
+    sources: [
+      {label:"NASA Glenn: Ideal Rocket Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"},
+      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"}
+    ]
+  },
+  launch: {
+    title: {
+      ja: "ロケットの推力",
+      en: "Rocket thrust"
+    },
+    principle: {
+      ja: "ロケットの推力は、排気ガスを後方へ加速することで生まれます。",
+      en: "Rocket thrust is produced by accelerating exhaust gases backward."
+    },
+    formula: "F = ṁ × Vₑ + Aₑ × (pₑ − p₀)",
+    explanation: {
+      ja: "NASAの推力の説明では、推力は排気ガスの質量流量・排気速度・ノズル出口の圧力差などに関係します。エンジン単体の推力だけでなく、機体全体の質量や飛行条件も打ち上げに影響します。",
+      en: "NASA explains that thrust depends on exhaust mass flow, exhaust velocity, and the pressure difference at the nozzle exit. Launch performance also depends on the vehicle's total mass and flight conditions, not just engine thrust."
+    },
+    boundary: {
+      ja: "このゲームの「推進性能 PT」は実際の推力（N）ではなく、推力方程式による計算値でもありません。",
+      en: "The game's 'Propulsion PT' is not real thrust in newtons and is not calculated from the thrust equation."
+    },
+    sources: [
+      {label:"NASA Glenn: Rocket Thrust Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/rocket-thrust-equation/"},
+      {label:"NASA Glenn: Propulsion System",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/propulsion-system/"}
+    ]
+  },
+  fuel: {
+    title: {
+      ja: "比推力と推進剤",
+      en: "Specific impulse and propellant"
+    },
+    principle: {
+      ja: "比推力は、推進剤をどれだけ効率よく推力に変えられるかを示す指標の一つです。",
+      en: "Specific impulse is one measure of how effectively a rocket uses its propellant to produce thrust."
+    },
+    formula: "Isp = F / (ṁ × g₀)",
+    explanation: {
+      ja: "NASAの説明では、比推力は推力を推進剤の重量流量で割った量として表されます。タンク容量だけでなく、エンジンの比推力や機体全体の質量もミッション計画に関係します。",
+      en: "NASA defines specific impulse using thrust divided by propellant weight flow rate. Mission planning therefore considers more than tank capacity: engine specific impulse and total vehicle mass also matter."
+    },
+    boundary: {
+      ja: "ゲーム内の「燃料余裕 PT」は実際の燃料量・燃焼時間・比推力ではありません。また、部品名に「効率重視」とあっても、実在エンジンの効率を示すものではありません。",
+      en: "The game's 'Fuel Margin PT' is not a real propellant quantity, burn time, or specific impulse. A component called 'efficient' does not represent a real engine's measured efficiency."
+    },
+    sources: [
+      {label:"NASA Glenn: Specific Impulse",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/specific-impulse/"},
+      {label:"NASA Glenn: Ideal Rocket Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"}
+    ]
+  },
+  structure: {
+    title: {
+      ja: "機体構造の質量とトレードオフ",
+      en: "Structural mass and design trade-offs"
+    },
+    principle: {
+      ja: "機体構造の質量は、ロケット全体の質量比に影響します。",
+      en: "Structural mass affects a rocket's overall mass ratio."
+    },
+    formula: "Mass ratio = m₀ / m_f",
+    explanation: {
+      ja: "NASAの質量比の解説では、空の機体質量に構造や搭載物が含まれ、推進剤を含む全質量との比が速度変化能力に関係します。軽量化は有利になり得ますが、実際の構造設計では必要な強度や安全性も満たさなければなりません。",
+      en: "NASA's mass-ratio explanation includes structure and payload in the vehicle's empty mass. The ratio of full mass to empty mass is related to achievable velocity change. Lower structural mass can help, but a real design must still meet strength and safety requirements."
+    },
+    boundary: {
+      ja: "ゲームの「構造バランス PT」は強度・安全率・座屈・振動を解析した値ではありません。軽量フレームや補強フレームの数値も架空のポイントです。",
+      en: "The game's 'Structural Balance PT' is not a structural analysis of strength, safety factor, buckling, or vibration. Frame values are fictional game points."
+    },
+    sources: [
+      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"}
+    ]
+  },
+  tradeoff: {
+    title: {
+      ja: "設計のトレードオフ",
+      en: "Engineering trade-offs"
+    },
+    principle: {
+      ja: "設計では、一つの性能だけでなく、複数の要求と制約を同時に考えます。",
+      en: "Engineering design balances multiple requirements and constraints, not just one performance measure."
+    },
+    explanation: {
+      ja: "例えば推進剤を増やすとミッションに使える推進剤は増えますが、タンクや推進剤の質量も増えます。NASAのロケット方程式・質量比の解説は、こうした要素を別々ではなく組み合わせて考える必要性を示しています。",
+      en: "For example, carrying more propellant can provide more propellant for a mission, but the propellant and its tank also add mass. NASA's rocket-equation and mass-ratio material shows why these factors must be considered together."
+    },
+    boundary: {
+      ja: "ゲームの予算 PT は実際の開発費や打ち上げ費用ではありません。ここでは複数条件の中で選択する練習用の制約です。",
+      en: "The game's budget points are not real development or launch costs. They are a simplified constraint for practicing decisions among competing requirements."
+    },
+    sources: [
+      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"},
+      {label:"NASA Glenn: Ideal Rocket Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"}
+    ]
+  },
+  requirements: {
+    title: {
+      ja: "ミッション要求と設計の適合",
+      en: "Matching design to mission requirements"
+    },
+    principle: {
+      ja: "設計の良し悪しは、部品単体ではなく、ミッションの要求を満たせるかで判断します。",
+      en: "A design is judged by whether it meets mission requirements, not by a component in isolation."
+    },
+    explanation: {
+      ja: "到達先や必要な速度変更量などの要求が変われば、以前の設計がそのまま適切とは限りません。要求条件を確認し、質量・推進剤・推進系などの関係を再評価することが大切です。",
+      en: "If a destination or required velocity change is revised, the previous design may no longer be suitable. The requirements should be checked again alongside mass, propellant, and propulsion-system considerations."
+    },
+    boundary: {
+      ja: "この事件はシステム設計の考え方を学ぶための架空シナリオです。実際のミッション審査記録ではありません。",
+      en: "This is a fictional scenario for learning systems-design thinking, not a record of a real mission review."
+    },
+    sources: [
+      {label:"NASA Glenn: Ideal Rocket Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"},
+      {label:"NASA STEM: Propulsion with the Space Launch System",url:"https://www.nasa.gov/stem-content/propulsion-with-the-space-launch-system/"}
+    ]
+  }
+};
+
+function getScienceLesson(caseData) {
+  if (caseData.id.startsWith("ORBIT")) return scienceLessons.orbit;
+  if (caseData.id.startsWith("LAUNCH")) return scienceLessons.launch;
+  if (caseData.id.startsWith("FUEL")) return scienceLessons.fuel;
+  if (caseData.id.startsWith("STRUCT")) return scienceLessons.structure;
+  if (caseData.id.startsWith("BUDGET")) return scienceLessons.tradeoff;
+  return scienceLessons.requirements;
+}
+
+function renderScienceLesson(caseData) {
+  const lesson = getScienceLesson(caseData);
+  $("scienceTitle").textContent = lesson.title[currentLanguage];
+  $("sciencePrinciple").textContent = lesson.principle[currentLanguage];
+  $("scienceFormula").textContent = lesson.formula || "";
+  $("scienceFormula").hidden = !lesson.formula;
+  $("scienceExplanation").textContent = lesson.explanation[currentLanguage];
+  $("scienceGameBoundary").textContent = lesson.boundary[currentLanguage];
+  const links = $("scienceLinks");
+  links.replaceChildren();
+  const scienceToggle = document.querySelector(".science-toggle-label");
+  if (scienceToggle) scienceToggle.textContent = $("sciencePanel").open
+    ? (currentLanguage === "ja" ? "− 閉じる" : "− CLOSE")
+    : (currentLanguage === "ja" ? "＋ 開く" : "＋ OPEN");
+  lesson.sources.forEach(source => {
+    const anchor = document.createElement("a");
+    anchor.href = source.url;
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+    anchor.textContent = source.label;
+    links.appendChild(anchor);
+  });
+}
 
 const metricDefinitions = [
   {key:"thrust", labelKey:"metricThrust", target:65},
@@ -696,7 +899,10 @@ function applyLanguage(language) {
 
   $("languageSelect").value = currentLanguage;
   render();
-  if (currentCase && !investigationState.solved) renderInvestigation();
+  if (currentCase) {
+    renderScienceLesson(currentCase);
+    if (!investigationState.solved) renderInvestigation();
+  }
 
   // 診断結果が開いている場合も、現在の言語で再表示する。
   if (!$("resultPanel").hidden) diagnose();
@@ -752,6 +958,17 @@ function drawCase() {
 function renderInvestigation() {
   if (!currentCase) return;
   const c = currentCase;
+  $("sciencePanel").open = false;
+  renderScienceLesson(c);
+  if (!$('sciencePanel').dataset.toggleBound) {
+    $("sciencePanel").addEventListener("toggle", () => {
+      const toggle = document.querySelector(".science-toggle-label");
+      if (toggle) toggle.textContent = $("sciencePanel").open
+        ? (currentLanguage === "ja" ? "− 閉じる" : "− CLOSE")
+        : (currentLanguage === "ja" ? "＋ 開く" : "＋ OPEN");
+    });
+    $('sciencePanel').dataset.toggleBound = "true";
+  }
   $("caseEyebrow").textContent = `CASE FILE / ${c.id}`;
   $("caseHeaderTitle").textContent = caseText(c.title);
   $("caseHeaderStatus").textContent = currentLanguage === "ja" ? "調査中" : "UNDER INVESTIGATION";
@@ -772,8 +989,8 @@ function renderInvestigation() {
       <div class="evidence-top"><span>EVIDENCE ${String(item.index+1).padStart(2,"0")}</span><span>${currentLanguage === "ja" ? "調査資料" : "CASE FILE"}</span></div>
       <h4>${caseText(item.title)}</h4>
       <p>${caseText(item.body)}</p>
-      <button type="button" class="evidence-button" data-evidence="${item.index}">${currentLanguage === "ja" ? "資料を確認する" : "OPEN EVIDENCE"}</button>
-      <p class="evidence-detail" hidden>${caseText(item.detail)}</p>
+      <button type="button" class="evidence-button ${investigationState.opened.has(item.index) ? "is-open" : ""}" data-evidence="${item.index}">${investigationState.opened.has(item.index) ? (currentLanguage === "ja" ? "確認済み ✓" : "REVIEWED ✓") : (currentLanguage === "ja" ? "資料を確認する" : "OPEN EVIDENCE")}</button>
+      <p class="evidence-detail" ${investigationState.opened.has(item.index) ? "" : "hidden"}>${caseText(item.detail)}</p>
     </article>`).join("");
 
   const options = shuffle(c.options);
@@ -781,11 +998,13 @@ function renderInvestigation() {
   $("hypothesisOptions").innerHTML = options.map((option,index) => `
     <button type="button" class="hypothesis-option" data-hypothesis="${option.id}">${labels[index]}：${caseText(option.label)}</button>`).join("");
   $("hypothesisTitle").textContent = currentLanguage === "ja" ? "原因として最も可能性が高いものは？" : "Which explanation best fits the evidence?";
-  $("hypothesisHelp").textContent = currentLanguage === "ja" ? "証拠はヒントです。1つ以上確認すれば仮説を提出できます。全部読まなくてもOK！" : "Evidence is optional help. Review at least one card to submit a hypothesis.";
+  $("hypothesisHelp").textContent = currentLanguage === "ja" ? "3つすべての証拠を確認すると、原因追及の選択肢と提出ボタンが解放されます。" : "Review all three evidence cards to unlock the cause options and submit button.";
   $("hypothesisFeedback").textContent = currentLanguage === "ja" ? "気になる証拠を1つ確認して、原因を選んでみよう。" : "Open one clue, then choose what you think caused the problem.";
   $("hypothesisFeedback").className = "hypothesis-feedback";
   $("submitHypothesis").textContent = currentLanguage === "ja" ? "仮説を提出する" : "SUBMIT HYPOTHESIS";
   $("submitHypothesis").disabled = true;
+  $("submitHypothesis").hidden = true;
+  document.querySelectorAll(".hypothesis-option").forEach(option => { option.disabled = true; });
 
   document.querySelectorAll(".evidence-button").forEach(button => {
     button.addEventListener("click", () => {
@@ -806,17 +1025,35 @@ function renderInvestigation() {
     button.addEventListener("click", () => {
       if (investigationState.solved) return;
       investigationState.hypothesis = button.dataset.hypothesis;
-      document.querySelectorAll(".hypothesis-option").forEach(option => option.classList.toggle("selected", option === button));
+      document.querySelectorAll(".hypothesis-option").forEach(option => {
+        option.classList.toggle("selected", option === button);
+        if (option === button) option.classList.remove("is-wrong");
+      });
       $("hypothesisFeedback").textContent = currentLanguage === "ja" ? "この仮説でよければ、下のボタンで答え合わせ！" : "Ready? Submit your hypothesis to check your answer.";
       $("hypothesisFeedback").className = "hypothesis-feedback";
       updateInvestigationControls();
     });
   });
+  updateInvestigationControls();
 }
 
 function updateInvestigationControls() {
-  // 証拠はすべて読む必要なし。最低1つ確認すれば回答できる。
-  $("submitHypothesis").disabled = investigationState.opened.size < 1 || !investigationState.hypothesis || investigationState.solved;
+  // すべての証拠を開くと、初めて原因追及の選択肢と提出ボタンが解放される。
+  const allEvidenceReviewed = investigationState.opened.size === currentCase.evidence.length;
+  document.querySelectorAll(".hypothesis-option").forEach(option => {
+    option.disabled = !allEvidenceReviewed || investigationState.solved;
+  });
+  $("submitHypothesis").hidden = !allEvidenceReviewed;
+  $("submitHypothesis").disabled = !allEvidenceReviewed || !investigationState.hypothesis || investigationState.solved;
+  if (!allEvidenceReviewed) {
+    $("hypothesisFeedback").textContent = currentLanguage === "ja"
+      ? `証拠を確認しよう：${investigationState.opened.size} / ${currentCase.evidence.length} 件確認済み`
+      : `Review the evidence: ${investigationState.opened.size} / ${currentCase.evidence.length} reviewed`;
+  } else if (!investigationState.solved && !investigationState.hypothesis) {
+    $("hypothesisFeedback").textContent = currentLanguage === "ja"
+      ? "すべての証拠を確認しました。内容を比較して、原因を選ぼう。"
+      : "All evidence reviewed. Compare the clues and choose the most likely cause.";
+  }
 }
 
 function startCase(caseData = null) {
@@ -884,7 +1121,9 @@ $("submitHypothesis").addEventListener("click", () => {
         wrongButton.appendChild(mark);
       }
     }
-    feedback.textContent = (currentLanguage === "ja" ? "× その仮説ではなさそう！ もう一度考えてみよう。\nヒント：" : "× Not quite. Try another explanation.\nHint: ") + caseText(currentCase.hint);
+    const specificFeedback = currentCase.optionFeedback?.[investigationState.hypothesis];
+    feedback.textContent = (currentLanguage === "ja" ? "× この仮説は証拠と一致しません。\n" : "× This hypothesis does not match the evidence.\n")
+      + (specificFeedback ? caseText(specificFeedback) : caseText(currentCase.hint));
     feedback.classList.remove("correct");
     feedback.classList.add("incorrect");
     // 次の回答を選ぶまで提出できないようにして、同じ答えの連続送信を防ぐ。

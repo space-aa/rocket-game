@@ -225,3 +225,22 @@ footer{display:flex;justify-content:space-between;gap:12px;padding:22px 2px 28px
 .hypothesis-feedback{white-space:pre-line}
 .hypothesis-feedback.incorrect{color:#ff9da3;background:#351d28;border:1px solid #78404a;border-radius:5px;padding:10px 12px}
 .hypothesis-feedback.correct{color:#9be6c4;background:#12342e;border:1px solid #397b63;border-radius:5px;padding:10px 12px}
+
+.science-formula{display:inline-block;margin:0 0 9px;padding:7px 10px;border:1px solid #355c72;border-radius:5px;background:#071827;color:#e2f6ff;font:600 13px 'Barlow Condensed',monospace;letter-spacing:.3px}
+
+
+/* Collapsible science note and evidence-gated diagnosis */
+.science-panel{margin:16px 0;border:1px solid #31536a;border-radius:7px;background:#091b2b;overflow:hidden}
+.science-panel-summary{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:13px 15px;cursor:pointer;list-style:none}
+.science-panel-summary::-webkit-details-marker{display:none}
+.science-panel-summary::marker{content:""}
+.science-panel-summary .science-kicker{font-size:10px;letter-spacing:1px;color:#85b8ce;font-weight:700}
+.science-panel-summary .science-tag{font-size:10px;color:#a8bdce}
+.science-toggle-label{margin-left:auto;color:#83d8e9;font-size:10px;font-weight:700}
+.science-panel[open] .science-panel-summary{border-bottom:1px solid #29465b;background:#0d2436}
+.science-panel-content{padding:14px 15px}
+.science-panel-content h4{margin:0 0 9px;font-size:14px}
+.science-panel-content p{font-size:11px;line-height:1.85}
+.hypothesis-option:disabled{opacity:.42;cursor:not-allowed;filter:saturate(.45)}
+#submitHypothesis[hidden]{display:none!important}
+@media(max-width:600px){.science-panel-summary{gap:7px}.science-toggle-label{margin-left:auto}}
