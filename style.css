@@ -244,3 +244,12 @@ footer{display:flex;justify-content:space-between;gap:12px;padding:22px 2px 28px
 .hypothesis-option:disabled{opacity:.42;cursor:not-allowed;filter:saturate(.45)}
 #submitHypothesis[hidden]{display:none!important}
 @media(max-width:600px){.science-panel-summary{gap:7px}.science-toggle-label{margin-left:auto}}
+
+
+/* Transparent project resource notes: distinguish implementation from inspiration. */
+.project-resources{margin-top:14px;padding-top:12px;border-top:1px solid #29465b}
+#projectResourceList{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+.project-resource-item{padding:10px 11px;background:#0a1b2b;border:1px solid #29465b;border-radius:5px}
+.project-resource-item a{display:block;color:#8ed9ed;font-size:10px;font-weight:700;line-height:1.6;text-decoration:underline;overflow-wrap:anywhere}
+.project-resource-status{display:inline-block;margin:5px 0 2px;padding:3px 6px;border:1px solid #355c72;border-radius:3px;color:#ffc18a;font-size:9px}
+.project-resource-item p{margin:4px 0 0;color:#a9bfce;font-size:10px;line-height:1.8}

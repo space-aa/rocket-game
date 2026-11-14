@@ -10,9 +10,9 @@ const translations = {
     scienceSources: "参考資料（NASA）",
     designMode: "DESIGN ANALYSIS MODE",
     languageLabel: "言語",
-    introEyebrow: "INVESTIGATE → DIAGNOSE → IMPROVE → COMPARE",
+    introEyebrow: "GOALS → REQUIREMENTS → INVESTIGATE → REDESIGN → VERIFY",
     heroTitle: "設計データから、ロケットの問題を読み解こう。",
-    heroDescription: "提示された設計を分析し、問題の原因を考え、部品を変更して改善を目指そう。",
+    heroDescription: "ミッションの目的と要求を確認し、証拠から原因を調べ、設計を改善して条件を満たすか確かめよう。",
     availableBudget: "AVAILABLE BUDGET",
     budgetOver: "予算を超えています。部品を見直そう",
     budgetOK: "予算内で改善できます",
@@ -104,9 +104,9 @@ const translations = {
     scienceSources: "NASA references",
     designMode: "DESIGN ANALYSIS MODE",
     languageLabel: "Language",
-    introEyebrow: "INVESTIGATE → DIAGNOSE → IMPROVE → COMPARE",
+    introEyebrow: "GOALS → REQUIREMENTS → INVESTIGATE → REDESIGN → VERIFY",
     heroTitle: "Read the problems hidden in a rocket design.",
-    heroDescription: "Analyze the provided design, investigate possible causes, and improve it by changing components.",
+    heroDescription: "Check mission goals and requirements, investigate evidence, revise the design, and verify whether it meets the conditions.",
     availableBudget: "AVAILABLE BUDGET",
     budgetOver: "Over budget. Review your components.",
     budgetOK: "Your design is within budget.",
@@ -405,8 +405,8 @@ const scienceLessons = {
     },
     formula: "Δv = Isp × g₀ × ln(m₀ / m_f)",
     explanation: {
-      ja: "理想ロケット方程式では、Δvはエンジンの比推力と、燃焼前後の質量比に関係します。燃料を増やすだけでなく、機体構造や搭載物の質量も含めて考える必要があります。",
-      en: "The ideal rocket equation relates delta-v to engine specific impulse and the mass ratio before and after a burn. Propellant is not the only factor: the mass of the structure and payload also matters."
+      ja: "理想ロケット方程式では、Δvはエンジンの比推力と、燃焼前後の質量比に関係します。NASAのGMATは、低軌道から月・深宇宙までのミッション設計や軌道解析を支援する実際のソフトウェアです。このゲームでは、月周回軌道の事件とΔvの学習説明にその考え方を取り入れています。",
+      en: "The ideal rocket equation relates delta-v to engine specific impulse and the mass ratio before and after a burn. NASA's GMAT is real software for mission design and analysis across regimes from Earth orbit to lunar and deep-space missions. This game uses that context in its lunar-orbit case and delta-v learning note."
     },
     boundary: {
       ja: "このゲームの「速度変更能力 PT」はΔvの実測値・計算値ではありません。実際のΔvを算出するロケット方程式を、そのままゲームのポイント計算には使っていません。",
@@ -414,7 +414,8 @@ const scienceLessons = {
     },
     sources: [
       {label:"NASA Glenn: Ideal Rocket Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"},
-      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"}
+      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"},
+      {label:"NASA Software Catalog: GMAT",url:"https://software.nasa.gov/software/GSC-19468-1"}
     ]
   },
   launch: {
@@ -474,15 +475,16 @@ const scienceLessons = {
     },
     formula: "Mass ratio = m₀ / m_f",
     explanation: {
-      ja: "NASAの質量比の解説では、空の機体質量に構造や搭載物が含まれ、推進剤を含む全質量との比が速度変化能力に関係します。軽量化は有利になり得ますが、実際の構造設計では必要な強度や安全性も満たさなければなりません。",
-      en: "NASA's mass-ratio explanation includes structure and payload in the vehicle's empty mass. The ratio of full mass to empty mass is related to achievable velocity change. Lower structural mass can help, but a real design must still meet strength and safety requirements."
+      ja: "NASAのCubeSat 101では、機体の総質量・重心・慣性などをまとめるMass Properties Reportが扱われています。構造の質量は打ち上げ側の解析にも関係するため、軽さだけでなく機体全体の質量特性を確認する必要があります。このゲームでは構造バランスと質量の関係を簡略化して扱います。",
+      en: "NASA's CubeSat 101 describes a Mass Properties Report covering total mass, center of gravity, and moments of inertia. Structural mass matters to launch-provider analyses, so a spacecraft must be considered as a whole rather than judged by lightness alone. This game simplifies that relationship into a structural-balance rating."
     },
     boundary: {
       ja: "ゲームの「構造バランス PT」は強度・安全率・座屈・振動を解析した値ではありません。軽量フレームや補強フレームの数値も架空のポイントです。",
       en: "The game's 'Structural Balance PT' is not a structural analysis of strength, safety factor, buckling, or vibration. Frame values are fictional game points."
     },
     sources: [
-      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"}
+      {label:"NASA Glenn: Mass Ratios",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/mass-ratios/"},
+      {label:"NASA CubeSat 101: Mass Properties Report",url:"https://www3.nasa.gov/sites/default/files/atoms/files/nasa_csli_cubesat_101_508.pdf"}
     ]
   },
   tradeoff: {
@@ -517,16 +519,16 @@ const scienceLessons = {
       en: "A design is judged by whether it meets mission requirements, not by a component in isolation."
     },
     explanation: {
-      ja: "到達先や必要な速度変更量などの要求が変われば、以前の設計がそのまま適切とは限りません。要求条件を確認し、質量・推進剤・推進系などの関係を再評価することが大切です。",
-      en: "If a destination or required velocity change is revised, the previous design may no longer be suitable. The requirements should be checked again alongside mass, propellant, and propulsion-system considerations."
+      ja: "NASAのミッション設計資料は、ニーズと目標の特定、コンセプト、要求定義、設計、製作・検証、実施という流れを示しています。またCubeSat 101では、電力系・バッテリー・送信機・地上局・試験なども開発時に確認する項目として扱われます。このゲームでは要求の見直しを事件の中心にし、電力や通信などは実機で重要な追加システムとして学習ノートで紹介します。",
+      en: "NASA's mission-design material outlines a flow from identifying needs and goals through concept, requirements, design, build and verification, and implementation. CubeSat 101 also covers power systems, batteries, transmitters, ground stations, and testing. This game makes requirement review part of its cases and introduces power and communications as important real-spacecraft systems in the learning note."
     },
     boundary: {
       ja: "この事件はシステム設計の考え方を学ぶための架空シナリオです。実際のミッション審査記録ではありません。",
       en: "This is a fictional scenario for learning systems-design thinking, not a record of a real mission review."
     },
     sources: [
-      {label:"NASA Glenn: Ideal Rocket Equation",url:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"},
-      {label:"NASA STEM: Propulsion with the Space Launch System",url:"https://www.nasa.gov/stem-content/propulsion-with-the-space-launch-system/"}
+      {label:"NASA: Design and Develop Science Missions",url:"https://www.nasa.gov/wp-content/uploads/2025/04/250323-design-and-develop-science-mission.pdf"},
+      {label:"NASA CubeSat 101",url:"https://www3.nasa.gov/sites/default/files/atoms/files/nasa_csli_cubesat_101_508.pdf"}
     ]
   }
 };
@@ -561,6 +563,61 @@ function renderScienceLesson(caseData) {
     anchor.rel = "noopener noreferrer";
     anchor.textContent = source.label;
     links.appendChild(anchor);
+  });
+  renderProjectResources();
+}
+
+// ------------------------------
+// 参考資料と、ゲーム内での利用範囲
+// 「実装した機能」と「設計の参考にしただけの資料」を区別して表示する。
+// ------------------------------
+const projectResources = [
+  {
+    title: "NASA — Design and Develop Science Missions (2025)",
+    url: "https://www.nasa.gov/wp-content/uploads/2025/04/250323-design-and-develop-science-mission.pdf",
+    ja: "資料のp.10に示された「ニーズと目標の特定→コンセプト→要求定義→設計→製作・検証→実施」という流れを、ゲームの進行設計に反映しました。ミッション概要で目的と要求を確認し、証拠を調査して原因を特定し、設計を変更した後に評価する構成です。また、打ち上げ・宇宙機・地上・利用者というミッションの各セグメントを、ミッション全体を考える背景として参照しました。ゲームはこのプロセスを学習用に簡略化したもので、NASAの正式な審査手順を再現するものではありません。",
+    en: "The workflow on p.10—identify needs and goals, define a concept and requirements, design, build and verify, then implement—informed the game's progression. Players review mission goals, investigate evidence, identify a cause, revise the design, and evaluate the result. The launch, space, ground, and user segments also informed the mission-wide context. The game is a simplified learning adaptation, not a reproduction of NASA's formal review process.",
+    statusJa: "ゲーム進行（目的・要求・調査・改善・評価）に反映", statusEn: "Reflected in mission-goal, requirement, investigation, redesign, and review flow"
+  },
+  {
+    title: "NASA Software Catalog — General Mission Analysis Tool (GMAT)",
+    url: "https://software.nasa.gov/software/GSC-19468-1",
+    ja: "NASAが公開するGMATの説明を、実際のミッション設計・最適化・航法・軌道解析の背景資料として使用しました。ゲームでは月周回軌道への投入を扱う事件と、Δv（速度変更量）の学習ノートに反映しています。GMATのソフトウェア、計算エンジン、実際の軌道データは組み込んでいません。ゲーム内のPT値は架空の評価ポイントで、実際の軌道計算結果ではありません。",
+    en: "NASA's GMAT catalog description was used as background for real mission design, optimization, navigation, and orbit analysis. It informs the lunar-orbit investigation case and the delta-v learning note. GMAT software, its calculation engine, and real trajectory data are not integrated. In-game PT values are fictional ratings, not orbital calculations.",
+    statusJa: "軌道事件・Δvの学習説明に反映（GMAT本体は未統合）", statusEn: "Informs orbit case and delta-v note (GMAT itself is not integrated)"
+  },
+  {
+    title: "NASA — CubeSat 101: Basic Concepts and Processes for First-Time CubeSat Developers",
+    url: "https://www3.nasa.gov/sites/default/files/atoms/files/nasa_csli_cubesat_101_508.pdf",
+    ja: "総質量・重心・慣性を扱うMass Properties Report（p.56–57）、電力系・バッテリーに関する説明（p.58–59付近）、送信機情報や地上局の設計・試験に関する説明（p.22–23、p.72）を参照しました。ゲームでは構造バランスの学習ノートに質量特性の考え方を反映し、ミッション要求の説明で電力・通信・地上局も実機の重要な要素として紹介しています。現行ゲームの部品・評価システムに電力や通信の数値計算を追加したわけではなく、CubeSatの完全な設計ツールでもありません。",
+    en: "The guide's Mass Properties Report (total mass, center of gravity, and moments of inertia; pp.56–57), electrical and battery documentation (around pp.58–59), and transmitter and ground-station design and testing material (pp.22–23 and p.72) were consulted. The structural learning note introduces mass properties, while the mission-requirements note identifies power, communications, and ground stations as important real spacecraft systems. The game does not calculate power or communications performance and is not a complete CubeSat design tool.",
+    statusJa: "構造・質量の学習説明と実機システムの補足に反映（一部は解説のみ）", statusEn: "Reflected in structural/mass learning notes and real-system context (some are explanatory only)"
+  }
+];
+
+function renderProjectResources() {
+  const heading = $("projectResourcesHeading");
+  const list = $("projectResourceList");
+  if (!heading || !list) return;
+  heading.textContent = currentLanguage === "ja"
+    ? "中心に使用したNASAリソースとプログラムへの反映"
+    : "Core NASA resources and how they informed the game";
+  list.replaceChildren();
+  projectResources.forEach(resource => {
+    const item = document.createElement("div");
+    item.className = "project-resource-item";
+    const link = document.createElement("a");
+    link.href = resource.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = resource.title;
+    const status = document.createElement("span");
+    status.className = "project-resource-status";
+    status.textContent = resource[currentLanguage === "ja" ? "statusJa" : "statusEn"];
+    const note = document.createElement("p");
+    note.textContent = resource[currentLanguage === "ja" ? "ja" : "en"];
+    item.append(link, status, note);
+    list.appendChild(item);
   });
 }
 
